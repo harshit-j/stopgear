@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<title>Stopwatch</title>
+
+</head>
+<body>
+<div id='time'>00:00:00:00</div>
+<button id='start'>Start</button>
+<button id='stop'>Stop</button>
+<button id='reset'>Reset</button>
+<script>
+'use strict';
+const watch_cont = document.querySelector('#time');
+const start = document.querySelector('#start');
+const stop = document.querySelector('#stop');
+const reset = document.querySelector('#reset');
+
+
+/*
+let handle_time ={
+	set : () => {
+		const today = new Date(),
+		m = today.getMinutes(),
+		s = today.getSeconds(),
+		h = today.getHours(),
+		mm = today.getMilliseconds().toString();
+		timecont.innerHTML=`${h}:${m}:${s}:${mm.slice(0,2)}`;
+	},
+	interval:0,
+	start : function() { 
+		if(timecont)
+		this.interval=setInterval(()=>this.set(),20);
+	},
+	stop: function(){
+		clearInterval(this.interval);
+	}
+}
+handle_time.start();
+*/
+/*
+
+	let h = 0, m = 0, s = 0, mm = 0, interval, started = false;
+
+	function timer(){
+		mm++;
+		if(mm===100){
+			mm=0;
+			s++;
+			if(s===60){
+				s=0;
+				m++;
+				if(m===60){
+					m=0;
+					h++;
+					if(h===24){
+						h=0;
+					}
+				}
+			}
+		}
+	}
+
+	function set(){
+		watch_cont.innerHTML = (h > 9 ? h : '0'+ h) +':'+ (m > 9 ? m : '0'+ m) +':'+ (s > 9 ? s : '0'+ s) +':'+ (mm > 9 ? mm : '0'+ mm);
+	}
+	function start(){
+		if(!started){
+			started = true;
+			interval = setInterval(function(){
+				timer();
+				set();
+			},10)
+		}
+	}
+	function stop(){
+		clearInterval(interval);
+		started = false;
+	}
+	function reset(){
+		stop();
+		h = 0, m = 0, s = 0, mm = 0;
+		watch_cont.innerHTML = '00:00:00:00';
+	}
+*/
+function stop_watch(){
+	let h = 0, m = 0, s = 0, mm = 0, interval, started = false, saved_time, new_time, paused_gap = 0, paused_time, delta;
+
+	function timer(){
+		new_time = Math.round(performance.now());
+		if(paused_time) {
+			paused_gap += new_time - paused_time;
+			paused_time = 0;
+		};
+		console.log(paused_gap, new_time, paused_time);
+		delta = new_time - saved_time - paused_gap;
+
+		console.log(delta);
+		mm = (delta % 1000);
+		s = (delta - mm)/ 1000 % 60;
+		m = ((delta -mm) / 1000 - s ) / 60 % 60;
+		h = (((delta -mm) / 1000 - s ) / 60 - m) /60;
+		mm = mm.toString().slice(0,2);
+	}
+	
+	function set(){		
+		watch_cont.innerHTML = (h > 9 ? h : '0'+ h) +':'+ (m > 9 ? m : '0'+ m) +':'+ (s > 9 ? s : '0'+ s) +':'+ (mm > 9 ? mm : '0'+ mm);
+	}
+	function start(){
+		if(!started){
+			started = true;
+			saved_time = saved_time || Math.round(performance.now());
+			interval = setInterval(function(){
+				timer();
+				set();
+			},10)
+		}
+	}
+	function stop(){
+		clearInterval(interval);
+		paused_time = new_time;
+		started = false;
+	}
+	function reset(){
+		stop();
+		saved_time = paused_gap = paused_time = new_time = 0;
+		watch_cont.innerHTML = '00:00:00:00';
+	}
+
+	this.start = start;
+	this.stop = stop;
+	this.reset = reset;
+}
+
+const a = new stop_watch();
+start.addEventListener('click',a.start);
+stop.addEventListener('click',a.stop);
+reset.addEventListener('click',a.reset);
+</script>
+</body>
+</html>

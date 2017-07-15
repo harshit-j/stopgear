@@ -2,9 +2,11 @@
 
 	const time = document.querySelector('#time');
 	const start_btn = document.querySelector('#start');
-	const stop_btn = document.querySelector('#stop');
+	//const stop_btn = document.querySelector('#stop');
 	const split_btn = document.querySelector('#split');
-	const reset_btn = document.querySelector('#reset');
+	const text1 = Array.from(document.querySelectorAll('.text:first-child'));
+	const text2 = Array.from(document.querySelectorAll('.text:last-child'));
+	//const reset_btn = document.querySelector('#reset');
 	const split_table = document.querySelector('#details tbody');
 	let h, m, s, mm, interval, started = false, started_time, current, paused_gap = 0, split_adjust = 0, paused_time, temp, split_start, difference, running_total;
 
@@ -38,6 +40,10 @@
 // to start stopwatch
 	function start(){
 		if(!started){
+			start_btn.classList.toggle('rotate');
+			text1.forEach(text => text.style.opacity = 0);
+			setTimeout(() => text2.forEach(text => text.style.opacity = 1), 300);
+
 			started = true;
 			started_time = started_time || Math.round(performance.now());
 			split_start = split_start || started_time;
@@ -47,6 +53,9 @@
 
 // to pause stopwatch
 	function stop(){
+		start_btn.classList.toggle('rotate');
+		text2.forEach(text => text.style.opacity = 0);
+		setTimeout(() => text1.forEach(text => text.style.opacity = 1), 300);
 		clearInterval(interval);
 		paused_time = current;
 		started = false;
@@ -70,13 +79,7 @@
 		time.textContent = '00:00:00.00';
 	}
 
-start_btn.addEventListener('click',start);
-stop_btn.addEventListener('click',stop);
+start_btn.addEventListener('click',() => started ? stop() : start());
+//stop_btn.addEventListener('click',stop);
 split_btn.addEventListener('click',split);
-reset_btn.addEventListener('click',reset);
-
-
-
-
-
-
+//reset_btn.addEventListener('click',reset);

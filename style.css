@@ -1,0 +1,5 @@
+@font-face {font-family:"digital";src:url("font/Let_s_go_Digital_Regular.eot?") format("eot"),url("font/Let_s_go_Digital_Regular.woff") format("woff"),url("font/Let_s_go_Digital_Regular.ttf") format("truetype"),url("font/Let_s_go_Digital_Regular.svg#LetsgoDigital-Regular") format("svg");font-weight:normal;font-style:normal;}
+
+#time{
+	font-family:'digital';
+}

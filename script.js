@@ -114,3 +114,17 @@
 
 start_btn.addEventListener('click', () => started ? stop() : start());
 split_btn.addEventListener('click', () => started ? split() : reset());
+
+
+function shortcuts(e){
+	switch(e.keyCode){
+		case 32:
+		started ? stop() : start();
+		break;
+
+		case 88:
+		started ? split() : reset();
+		break;
+	}
+}
+window.addEventListener('keyup',shortcuts);

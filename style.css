@@ -36,18 +36,27 @@ justify-content: center;
 #start.rotate{
 	transform: rotateX(180deg);
 	background-color: red;
-}/*
-.rotate .text:first-child, .rotate ~ #split .text:first-child{
-	opacity: 0;
 }
-.rotate .text:last-child, .rotate ~ #split .text:last-child{
-	opacity: 1;
-}
-*/
-/*****************/
 
-#start.rotate ~ #split{
+#start.rotate + #split{
 	transform: rotateX(180deg);
 	background-color: blue;	
 }
+
+#details tbody{
+	counter-reset:serial;
+	display: flex;
+	flex-direction: column-reverse;
+}
+#details tr{
+	display:flex
+}
+#details tbody tr{
+	counter-increment: serial;
+}
+
+#details tbody td:first-child::before{
+	content:counter(serial)'.';
+}
+
 

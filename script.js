@@ -2,11 +2,9 @@
 
 	const time = document.querySelector('#time');
 	const start_btn = document.querySelector('#start');
-	//const stop_btn = document.querySelector('#stop');
 	const split_btn = document.querySelector('#split');
 	const text1 = Array.from(document.querySelectorAll('.text:first-child'));
 	const text2 = Array.from(document.querySelectorAll('.text:last-child'));
-	//const reset_btn = document.querySelector('#reset');
 	const split_table = document.querySelector('#details tbody');
 	let h, m, s, mm, interval, started = false, started_time, current, paused_gap = 0, split_adjust = 0, paused_time, temp, split_start, difference, running_total;
 
@@ -52,10 +50,12 @@
 	}
 
 // to pause stopwatch
-	function stop(){
-		start_btn.classList.toggle('rotate');
-		text2.forEach(text => text.style.opacity = 0);
-		setTimeout(() => text1.forEach(text => text.style.opacity = 1), 300);
+	function stop(flip = true){
+		if(flip){
+			start_btn.classList.toggle('rotate');
+			text2.forEach(text => text.style.opacity = 0);
+			setTimeout(() => text1.forEach(text => text.style.opacity = 1), 300);
+		}
 		clearInterval(interval);
 		paused_time = current;
 		started = false;
@@ -66,20 +66,17 @@
 		if(started){
 		difference = current - split_start - split_adjust;
 		split_start = current;
-		console.log(delta(current))
 		split_adjust = 0;
-		split_table.innerHTML += `<tr><td>${delta(difference)}</td> <td>${running_total}</td> </tr>`
+		split_table.innerHTML += `<tr><td></td><td>${delta(difference)}</td> <td>${running_total}</td> </tr>`
 		}
 	}
 
 // to reset stopwatch
 	function reset(){
-		stop();
+		stop(false);
 		started_time = paused_gap = paused_time = current = split_start = 0, split_table.innerHTML = '';
 		time.textContent = '00:00:00.00';
 	}
 
-start_btn.addEventListener('click',() => started ? stop() : start());
-//stop_btn.addEventListener('click',stop);
-split_btn.addEventListener('click',split);
-//reset_btn.addEventListener('click',reset);
+start_btn.addEventListener('click', () => started ? stop() : start());
+split_btn.addEventListener('click', () => started ? split() : reset());

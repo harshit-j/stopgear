@@ -21,15 +21,16 @@
 #small, #small2 {
 	width: 53.5%;
 	min-width: 214px;
-	position: relative;
+	height: auto;
+	position: absolute;
 }
 
 #small {
-	transform: translate3d(-42%,-47%,0);
+	transform: translate3d(-42%,-46.5%,0);
 }
 
 #small2 {
-	transform: translate3d(124.5%,-143.5%,0);
+	transform: translate3d(124.5%,-43.5%,0);
 }
 
 /*******************/

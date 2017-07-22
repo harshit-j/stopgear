@@ -1,5 +1,9 @@
 'use strict';
-
+	window.addEventListener('load', function(){
+		const body = document.querySelector('body');
+		body.style.opacity = 1;
+		body.style.top = '0';
+});
 	const time = document.querySelector('#time'),
 	start_btn = document.querySelector('#start'),
 	split_btn = document.querySelector('#split'),

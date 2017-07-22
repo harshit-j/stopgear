@@ -72,6 +72,15 @@
 		transform: rotate(360deg);
 	}
 }
+@keyframes small-reverse {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(-360deg);
+	}
+}
 
 @keyframes big {
 	0% {
@@ -87,10 +96,10 @@
 #time {
 	font-family: 'digital';
 	position: absolute;
-	font-size: 5em;
+	font-size: 4em;
 /*media query for adjustment*/
 	width: 100%;
-	padding-top: 30%;
+	padding-top: 25%;
 	text-align: center;
 	z-index: 2;
 }
@@ -175,4 +184,48 @@
 
 #details tbody td:first-child::before {
 	content: counter(serial)'.';
+}
+
+
+@media screen and (max-width: 450px){
+#gears, #big object{
+	min-width: 300px;
+}
+
+
+}@media screen and (min-width: 451px){
+#time {
+    font-size: 5em;
+}
+}
+
+
+@media screen and (max-width: 650px){
+
+#small{
+	transform: translate3d(41%,-15.5%,0);
+	min-width: 160.5px
+}
+#small2 {
+    transform: translate3d(42%,-30%,0);
+    position: relative;
+	min-width: 160.5px
+}
+#small2>object {
+	animation-name: small-reverse;
+}
+}
+
+
+@media screen and (min-width: 992px){
+#time {
+    font-size: 6em;
+}
+}
+
+
+@media screen and (min-width: 1200px){
+#time {
+    font-size: 7em;
+}
 }

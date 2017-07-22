@@ -1,36 +1,64 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
-<title>Stopwatch</title>
-<link rel='stylesheet' href='style.css'>
+    <title>Stopwatch</title>
+    <link rel='stylesheet' href='bootstrap.min.css'>
+    <link rel='stylesheet' href='style.css'>
+    <script>
+        var meta = document.createElement("meta");
+        meta.setAttribute('name', 'viewport');
+        meta.setAttribute('content', 'initial-scale=' + (1 / window.devicePixelRatio));
+        document.getElementsByTagName('head')[0].appendChild(meta);
+    </script>
 </head>
+
 <body>
 
-<div id = 'stopwatch'>
-<div id='time'>00:00:00.00</div>
+    <table id='details'>
+        <thead>
+            <tr>
+                <td>S.No.</td>
+                <td>Laps</td>
+                <td>Running total</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 
-<button id='start'>
-<span class='text'>Start</span>
-<span class='text'>Stop</span>
-</button>
+    <div class='container'>
+        <div id='gears'>
+            <div id='in'>
 
-<button id='split'>
-<span class='text'>Reset</span>
-<span class='text'>Split</span>
-</button>
+                <div id='big'>
+                    <div id='time'>00:00:00
+                        <div>00</div>
+                    </div>
+                    <object type="image/svg+xml" data="assets/big.svg"></object>
+                </div>
+                <div id='small'>
+                    <div id='border'></div>
+                    <button id='start'>
+                        <object class='text' type="image/svg+xml" data="assets/play.svg"></object>
+                        <object class='text' type="image/svg+xml" data="assets/pause.svg"></object>
+                    </button>
 
-</div>
+                    <object type="image/svg+xml" data="assets/small.svg"></object>
+                </div>
+                <div id='small2'>
+                    <div id='border'></div>
+                    <button id='split'>
+                        <object class='text' type="image/svg+xml" data="assets/restart.svg"></object>
+                        <object class='text' type="image/svg+xml" data="assets/flag.svg"></object>
+                    </button>
+                    <object type="image/svg+xml" data="assets/small.svg"></object>
+                </div>
 
-<table id = 'details'>
-<thead>
-<tr>
-<td>S.No.</td> 
-<td>Laps</td> 
-<td>Running total</td> 
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-<script src = 'script.js'></script>
+            </div>
+        </div>
+    </div>
+
+    <script src='script.js'></script>
 </body>
+
 </html>

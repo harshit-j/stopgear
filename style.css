@@ -41,6 +41,7 @@
 	animation-duration: 5s;
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
+	animation-play-state: paused;
 }
 
 
@@ -54,6 +55,7 @@
 	animation-duration: 10s;
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
+	animation-play-state: paused;
 	z-index: 1;
 }
 

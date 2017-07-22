@@ -1,10 +1,13 @@
 'use strict';
 
-	const time = document.querySelector('#time');
-	const start_btn = document.querySelector('#start');
-	const split_btn = document.querySelector('#split');
-	const text1 = Array.from(document.querySelectorAll('.text:first-child'));
-	const text2 = Array.from(document.querySelectorAll('.text:last-child'));
+	const time = document.querySelector('#time'),
+	start_btn = document.querySelector('#start'),
+	split_btn = document.querySelector('#split'),
+	text1 = Array.from(document.querySelectorAll('.text:first-child')),
+	text2 = Array.from(document.querySelectorAll('.text:last-child')),
+	small = document.querySelector('#small>object'),
+	small2 = document.querySelector('#small2>object'),
+	big = document.querySelector('#big>object');
 	let split_table = document.querySelector('#details tbody'),
 	h, m, s, mm, interval, started = false, started_time, current, paused_gap = 0, split_adjust = 0, paused_time, temp, split_start, difference, running_total;
 
@@ -62,12 +65,16 @@
 		time.innerHTML = delta(temp);
 	}
 
+// to toggle button opacities and gear rotations
+	function transition_toggle(play_state){
+			start_btn.classList.toggle('opacity');
+			split_btn.classList.toggle('opacity');
+			small.style['animation-play-state'] = small2.style['animation-play-state'] = big.style['animation-play-state']= play_state;
+	}
 // to start stopwatch
 	function start(){
 		if(!started){
-			start_btn.classList.toggle('opacity');
-			split_btn.classList.toggle('opacity');
-
+			transition_toggle('running');
 			started = true;
 			started_time = started_time || Math.round(performance.now());
 			split_start = split_start || started_time;
@@ -77,10 +84,7 @@
 
 // to pause stopwatch
 	function stop(toggle_opacity = true){
-		if(toggle_opacity){
-			start_btn.classList.toggle('opacity');
-			split_btn.classList.toggle('opacity');
-		}
+		toggle_opacity && transition_toggle('paused');
 		clearInterval(interval);
 		paused_time = current;
 		started = false;

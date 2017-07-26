@@ -1,231 +1,279 @@
 @font-face {
-	font-family: "digital";
-	src: url("font/Let_s_go_Digital_Regular.eot?") format("eot"),url("font/Let_s_go_Digital_Regular.woff") format("woff"),url("font/Let_s_go_Digital_Regular.ttf") format("truetype"),url("font/Let_s_go_Digital_Regular.object#LetsgoDigital-Regular") format("object");
-	font-weight: normal;
-	font-style: normal;
+    font-family: "digital";
+    src: url("font/Let_s_go_Digital_Regular.eot?") format("eot"), url("font/Let_s_go_Digital_Regular.woff") format("woff"), url("font/Let_s_go_Digital_Regular.ttf") format("truetype"), url("font/Let_s_go_Digital_Regular.object#LetsgoDigital-Regular") format("object");
+    font-weight: normal;
+    font-style: normal;
 }
-
-.container {
-	display: flex;
-	justify-content: center;
+#stopwatch {
+    display: flex;
+    justify-content: center;
 }
-
 #gears {
-	position: relative;
-	width: 50%;
-	min-width: 400px;
+    position: relative;
+    width: 50%;
+    min-width: 400px;
 }
-
 /*******************/
 
-#small, #small2 {
-	width: 53.5%;
-	min-width: 214px;
-	height: auto;
+#big {
+    position: relative;
+    font-size: 0.9em
 }
-
-#small {
-	transform: translate3d(-42%,-46.5%,0);
-	position: relative;
-}
-
+#small,
 #small2 {
-	transform: translate3d(124.5%,-143%,0);
-	position: absolute;
+    width: 53.5%;
+    min-width: 214px;
+    height: auto;
 }
-
+#small {
+    transform: translate3d(-42%, -46.5%, 0);
+    position: relative;
+}
+#small2 {
+    transform: translate3d(124.5%, -143%, 0);
+    position: absolute;
+}
 /*******************/
 
-#small>object, #small2>object {
-	width: 100%;
-	height: auto;
-	animation-name: small;
-	animation-duration: 5s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-play-state: paused;
+#small>object,
+#small2>object {
+    width: 100%;
+    height: auto;
+    animation-name: small;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
 }
-
-
 /********************/
 
 #big object {
-	width: 100%;
-	min-width: 400px;
-	height: auto;
-	animation-name: big;
-	animation-duration: 10s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-play-state: paused;
-	z-index: 1;
+    width: 100%;
+    min-width: 400px;
+    height: auto;
+    animation-name: big;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+    z-index: 1;
 }
-
 /*************************/
 
 @keyframes small {
-	0% {
-		transform: rotate(0deg);
-	}
-
-	100% {
-		transform: rotate(360deg);
-	}
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 @keyframes small-reverse {
-	0% {
-		transform: rotate(0deg);
-	}
-
-	100% {
-		transform: rotate(-360deg);
-	}
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
 }
-
 @keyframes big {
-	0% {
-		transform: rotate(0deg);
-	}
-
-	100% {
-		transform: rotate(-360deg);
-	}
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
 }
-
 /****************************/
+
 #time {
-	font-family: 'digital';
-	position: absolute;
-	font-size: 4em;
-/*media query for adjustment*/
-	width: 100%;
-	padding-top: 25%;
-	text-align: center;
-	z-index: 2;
+    font-family: 'digital';
+    position: absolute;
+    font-size: 4em;
+    width: 100%;
+    padding-top: 28%;
+    text-align: center;
+    z-index: 3;
+    color: #27AAE1
 }
-
 #time div {
-	font-size: 1.4em;
-/*media query for adjustment*/;
+    font-size: 1.4em;
 }
-
 /***************************/
 
-#start, #split {
-	border-radius: 100%;
-	height: 100%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: absolute;
-	transition: transform 1s;
-	z-index: 3;
-	left: 50%;
-	top: 50%;
-	border: 0;
-	background-color: transparent;
-	transform: translate(-50%,-50%);
-	outline: 0;
+#start,
+#split {
+    border-radius: 100%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transition: transform 1s;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    border: 0;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    outline: 0;
 }
-
-#border {
-	border-radius: 100%;
-	height: 40%;
-	width: 40.5%;
-	position: absolute;
-	z-index: 2;
-	left: 50%;
-	top: 50%;
-	border: 3px solid #27AAE1;
-	background-color: transparent;
-	transform: translate(-50%,-51%);
+.border {
+    border-radius: 100%;
+    height: 59.5%;
+    width: 60%;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    border: 3px solid black;
+    background-color: #4A4B4C;
+    transform: translate(-50%, -51%);
+    box-shadow: inset 1px 0px 50px -7px #000000;
 }
-
+button:hover+.border {
+    border: 5px solid #27AAE1;
+}
 .text {
-	transition: opacity 0.25s;
-	width: 25%;
-	z-index: -1;
-	pointer-events: none
+    transition: opacity 0.25s;
+    width: 28%;
+    z-index: -1;
+    pointer-events: none
 }
-
 .text:first-child {
-	opacity: 1;
-	position: absolute;
+    opacity: 1;
+    position: absolute;
 }
-
+#start .text:first-child {
+    width: 30%
+}
 #split .text:first-child {
-	transform: rotateX(180deg) rotateZ(180deg);
+    transform: rotateX(180deg) rotateZ(180deg);
 }
-
-.text:last-child, .opacity .text:first-child {
-	opacity: 0;
+.text:last-child,
+.opacity .text:first-child {
+    opacity: 0;
 }
-
 .opacity .text:last-child {
-	opacity: 1;
+    opacity: 1;
 }
-
 /*************************/
 
-#details tbody {
-	counter-reset: serial;
-	display: flex;
-	flex-direction: column-reverse;
-}
-
-#details tr {
-	display: flex;
-}
-
-#details tbody tr {
-	counter-increment: serial;
-}
-
-#details tbody td:first-child::before {
-	content: counter(serial)'.';
-}
-
-
-@media screen and (max-width: 450px){
-#gears, #big object{
-	min-width: 300px;
-}
-
-
-}@media screen and (min-width: 451px){
-#time {
-    font-size: 5em;
-}
-}
-
-
-@media screen and (max-width: 650px){
-
-#small{
-	transform: translate3d(41%,-15.5%,0);
-	min-width: 160.5px
-}
-#small2 {
-    transform: translate3d(42%,-30%,0);
+#laps {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    width: 70%;
+    margin: 0 auto;
     position: relative;
-	min-width: 160.5px
+    top: -40px;
 }
-#small2>object {
-	animation-name: small-reverse;
+#laps div {
+    font-size: 1.428em;
+    color: black;
+    padding-left: 1em;
+    height: 3.151em;
+    display: flex;
+    align-items: center;
 }
+table {
+    width: 100%;
+    font-family: Segoe UI, Roboto, Calibri, Arial;
 }
+thead {
+    font-weight: 600;
+    font-size: 1.05em;
+}
+td {
+    padding: 1em;
+    display: block;
+}
+tbody {
+    font-size: 1.1em;
+    counter-reset: serial;
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 20px;
+    border-top: 2px solid rgba(0, 0, 0, 0.14);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.14);
+}
+.new {
+    border-top: 0;
+    margin: 0;
+}
+.hidden {
+    display: none;
+}
+.hidden+tbody {
+    border-top: 0;
+    margin: 0;
+}
+tbody:last-child {
+    border-bottom: 0;
+}
+tbody td:first-child::before {
+    content: counter(serial)'.';
+}
+tr {
+    display: flex;
+    counter-increment: serial;
+}
+tbody tr:hover {
+    background-color: #F5F5F5;
+}
+thead tr {
+    opacity: 0.6;
+}
+td:first-child {
+    width: 20%;
+    padding-left: 1.5em
+}
+td:nth-child(2) {
+    width: 40%;
+    text-align: right;
+}
+td:last-child {
+    width: 40%;
+    text-align: right;
+    padding-right: 1.5em
+}
+/********************/
 
-
-@media screen and (min-width: 992px){
-#time {
-    font-size: 6em;
+@media screen and (max-width: 450px) {
+    #gears,
+    #big object {
+        min-width: 300px;
+    }
 }
+@media screen and (max-width: 650px) {
+    #small {
+        transform: translate3d(41%, -15.5%, 0);
+        min-width: 160.5px
+    }
+    #small2 {
+        transform: translate3d(42%, -30%, 0);
+        position: relative;
+        min-width: 160.5px
+    }
+    #small2>object {
+        animation-name: small-reverse;
+    }
+    #laps {
+        top: -20px;
+        min-width: 100%
+    }
 }
-
-
-@media screen and (min-width: 1200px){
-#time {
-    font-size: 7em;
+@media screen and (min-width: 451px) {
+    #time {
+        font-size: 5em;
+    }
 }
+@media screen and (min-width: 992px) {
+    #time {
+        font-size: 6em;
+    }
+}
+@media screen and (min-width: 1200px) {
+    #time {
+        font-size: 7em;
+    }
 }

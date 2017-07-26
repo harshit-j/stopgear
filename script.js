@@ -1,21 +1,34 @@
 'use strict';
+// page load animation
 	window.addEventListener('load', function(){
-		const body = document.querySelector('body');
+		const body = $('body');
 		body.style.opacity = 1;
 		body.style.top = '0';
 });
-	const time = document.querySelector('#time'),
-	start_btn = document.querySelector('#start'),
-	split_btn = document.querySelector('#split'),
-	text1 = Array.from(document.querySelectorAll('.text:first-child')),
-	text2 = Array.from(document.querySelectorAll('.text:last-child')),
-	small = document.querySelector('#small>object'),
-	small2 = document.querySelector('#small2>object'),
-	big = document.querySelector('#big>object');
-	let split_table = document.querySelector('#details tbody'),
+
+	const $ = el => document.querySelector(el),
+	time = $('#time'),
+	start_btn = $('#start'),
+	split_btn = $('#split'),
+	small = $('#small>object'),
+	small2 = $('#small2>object'),
+	big = $('#big>object'),
+	laps = $('#laps');
+	let split_table = $('.new'),
 	h, m, s, mm, interval, started = false, started_time, current, paused_gap = 0, split_adjust = 0, paused_time, temp, split_start, difference, running_total;
 
-//check for availablity of localStorage
+// reset rotation when page is resized
+	window.onresize = function() {
+		const a = 'animation-name';
+		small.style[a] = small2.style[a] = big.style[a] = 'none';
+		setTimeout(() => {
+			small.style[a] = 'small';
+			small2.style[a] = document.documentElement.clientWidth > 650 ? 'small' : 'small-reverse';
+			big.style[a] = 'big'
+		}, 1);
+	};
+
+// check for availablity of localStorage
     const storageAvailable = (() => { try {
         var storage = window['localStorage'],
             x = '__storage_test__';
@@ -39,7 +52,11 @@
     }
 })();
 
-	storageAvailable && localStorage.getItem('table') && split_table.insertAdjacentHTML('afterend', localStorage.getItem('table'));
+// insert table from localStorage upon page load
+	if(storageAvailable && localStorage.getItem('table')){
+		split_table.insertAdjacentHTML('afterend', localStorage.getItem('table'));
+		laps.classList.remove('hidden');
+	}
 
 // to process and format elapsed time
 	function delta(temp, wrap = true){
@@ -100,9 +117,12 @@
 			difference = current - split_start - split_adjust;
 			split_start = current;
 			split_adjust = 0;
+
 			split_table.innerHTML += `<tr><td></td><td>${delta(difference, false)}</td> <td>${delta(temp, false)}</td> </tr>`;
+			split_table.classList.remove('hidden');
+			laps.classList.remove('hidden');
 			if(storageAvailable){
-				const tbody = Array.from(document.querySelectorAll('#details tbody')).map(body => body.outerHTML).join('');
+				const tbody = Array.from(document.querySelectorAll('tbody')).map(body => body.outerHTML).join('').replace('class="new"','');
 				localStorage.setItem('table', tbody)
 			}
 		}
@@ -112,16 +132,18 @@
 	function reset(){
 		stop(false);
 		started_time = paused_gap = paused_time = current = split_start = 0;
-		split_table.parentElement.innerHTML = `<thead><tr><td>S.No.</td> <td>Laps</td> <td>Running total</td> </tr></thead><tbody></tbody>`;
-		split_table = document.querySelector('#details tbody');
+		laps.classList.add('hidden');
+		split_table.parentElement.innerHTML = `<thead><tr><td>S.No.</td> <td>Laps</td> <td>Running total</td> </tr></thead><tbody class='new'></tbody>`;
+		split_table = $('tbody');
 		storageAvailable && localStorage.removeItem('table');
 		time.innerHTML = '00:00:00<div>00</div>';
 	}
 
+// set event listeners for buttons
 start_btn.addEventListener('click', () => started ? stop() : start());
 split_btn.addEventListener('click', () => started ? split() : reset());
 
-
+// handle shortcut keys
 function shortcuts(e){
 	switch(e.keyCode){
 		case 90:// 'z' key to start or stop

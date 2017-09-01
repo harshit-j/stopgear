@@ -14,7 +14,7 @@
 }
 #gears {
     position: relative;
-    width: 50%;
+    width: 35%;
     min-width: 400px;
 }
 /*******************/
@@ -166,10 +166,10 @@ button:hover+.border {
 
 #laps {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    width: 70%;
+	width: 500px;
     margin: 0 auto;
     position: relative;
-    top: -40px;
+    top: -60px;
 }
 #laps div {
     font-size: 1.428em;
@@ -263,21 +263,11 @@ td:last-child {
     }
     #laps {
         top: -20px;
-        min-width: 100%
+        width: 100%
     }
 }
 @media screen and (min-width: 451px) {
     #time {
         font-size: 5em;
-    }
-}
-@media screen and (min-width: 992px) {
-    #time {
-        font-size: 6em;
-    }
-}
-@media screen and (min-width: 1200px) {
-    #time {
-        font-size: 7em;
     }
 }

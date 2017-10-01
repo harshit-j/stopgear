@@ -1,7 +1,7 @@
-# Stopwatch
+# StopGear
 A stopwatch app with rotating gear animation. It's a learning project using pure JavaScript. Bootstrap used for responsive design.
 
-[![Try it here](https://user-images.githubusercontent.com/5856653/28872053-0fb2c964-77a5-11e7-99c1-2cd999e8a0b8.png)](https://harshit-j.github.io/stopwatch/)
+[![Try it here](https://user-images.githubusercontent.com/5856653/28872053-0fb2c964-77a5-11e7-99c1-2cd999e8a0b8.png)](https://harshit-j.github.io/stopgear/)
 
 Features:
 - Responsive design
